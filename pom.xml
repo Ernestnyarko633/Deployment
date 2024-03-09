@@ -134,6 +134,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+             <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <release>17</release> <!-- Set to the Java version you are using (e.g., 8) -->
+                <compilerArgs>
+                    <arg>--add-opens</arg>
+                    <arg>java.base/java.lang.invoke=ALL-UNNAMED</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
 
                  <plugin>
     <groupId>org.jacoco</groupId>
