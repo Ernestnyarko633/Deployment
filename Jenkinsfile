@@ -25,8 +25,10 @@ pipeline {
         stage('Sonarqube Analysis') {
             steps {
                withSonarQubeEnv('sonar') {
-                      sh    """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=Full-stack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_3fcefc16b8c8af694fab9a22bf40392e4641c7b6 \
+                   withCredentials([string(credentialsId: 'sonar-credential', variable: 'SONAR_TOKEN')]) {
+                      sh    """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=Full-stack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=\$SONAR_TOKEN \
                       -Dsonar.java.binaries=."""
+                   }    
                }
             }
         }
