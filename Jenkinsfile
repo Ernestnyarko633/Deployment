@@ -26,7 +26,7 @@ pipeline {
             steps {
                withSonarQubeEnv('sonar') {
                    withCredentials([string(credentialsId: 'sonar-credential', variable: 'SONAR_TOKEN')]) {
-                      sh    """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=Full-stack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN \
+                      sh    """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=Full-stack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=\$SONAR_TOKEN \
                       -Dsonar.java.binaries=."""
                    }    
                }
